@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Barbearia Exemplo — Agende seu horário</title>
+  <meta name="description" content="Barbearia profissional — agende seu horário online. Corte, barba, combo e mais." />
+  <style>
+    :root{--bg:#0b0b0b;--card:#111;--accent:#d4af37;--muted:#ddd;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#070707 0%,#0f0f10 100%);color:var(--muted);-webkit-font-smoothing:antialiased}
+    header{padding:28px 18px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 0;color:#bbb}
+    .container{max-width:980px;margin:18px auto;padding:16px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .hero{background:var(--card);padding:18px;border-radius:14px}
+    .hero img{width:100%;border-radius:10px;display:block}
+    .services{margin-top:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .service{background:var(--glass);padding:10px;border-radius:10px}
+    .cta{display:flex;gap:10px;margin-top:14px}
+    .btn{background:var(--accent);color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+    .card{background:var(--card);padding:16px;border-radius:14px}
+    form label{display:block;font-size:13px;color:#ccc;margin-top:10px}
+    input,select,textarea{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted)}
+    .muted{font-size:13px;color:#9a9a9a;margin-top:8px}
+    .booking-success{background:#143; color:#cfead4;padding:10px;border-radius:8px;margin-top:10px;display:none}
+    footer{max-width:980px;margin:16px auto;color:#9a9a9a;padding:8px 16px}
+    @media(max-width:880px){.grid{grid-template-columns:1fr}.logo{width:48px;height:48px}.card{margin-top:12px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">B</div>
+      <div>
+        <h1>Barbearia Exemplo</h1>
+        <p class="lead">Profissional • Ambiente moderno • Agende online</p>
+      </div>
+    </div>
+    <a href="#agendar" class="btn">Agende seu horário</a>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section>
+        <div class="hero">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Barbeiro cortando cabelo"/>
+          <div class="services">
+            <div class="service"><strong>Corte Masculino</strong><div class="muted">R$ 35 — 45 min</div></div>
+            <div class="service"><strong>Barba</strong><div class="muted">R$ 25 — 30 min</div></div>
+            <div class="service"><strong>Combo Corte + Barba</strong><div class="muted">R$ 55 — 60 min</div></div>
+            <div class="service"><strong>Design de Sobrancelha</strong><div class="muted">R$ 20 — 20 min</div></div>
+          </div>
+          <div class="cta">
+            <a href="#agendar" class="btn">Agende agora</a>
+            <a href="https://wa.me/5591999999999" class="btn" style="background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.06)">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h3>Por que escolher nossa barbearia?</h3>
+          <p class="muted">Atendimento profissional, ambiente confortável, barbeiros experientes e agendamento rápido.</p>
+          <h4 style="margin-top:10px">Depoimentos</h4>
+          <p class="muted">"Melhor corte da cidade" — João</p>
+          <p class="muted">"Atendimento pontual e de qualidade" — Marcos</p>
+        </div>
+      </section>
+
+      <aside>
+        <div id="agendar" class="card">
+          <h3>Agende seu horário</h3>
+          <p class="muted">Escolha serviço, barbeiro, data e horário. Você receberá confirmação por e-mail/WhatsApp.</p>
+
+          <!-- Formulário: substitua ACTION por seu endpoint Formspree ou Zapier; instruções abaixo no documento -->
+          <form id="bookingForm" action="https://formspree.io/f/yourFormId" method="POST">
+            <label>Nome</label>
+            <input type="text" name="name" required placeholder="Seu nome" />
+
+            <label>Telefone (WhatsApp)</label>
+            <input type="tel" name="phone" required placeholder="(99) 9 9999-9999" />
+
+            <label>Serviço</label>
+            <select name="service" required>
+              <option value="">Selecione</option>
+              <option value="corte">Corte Masculino</option>
+              <option value="barba">Barba</option>
+              <option value="combo">Combo Corte + Barba</option>
+            </select>
+
+            <label>Barbeiro</label>
+            <select name="barber" required>
+              <option value="">Qual barbeiro?</option>
+              <option value="bruno">Bruno</option>
+              <option value="carlos">Carlos</option>
+              <option value="marcos">Marcos</option>
+            </select>
+
+            <label>Data e horário</label>
+            <input type="datetime-local" name="datetime" required />
+
+            <label>Observações (opcional)</label>
+            <textarea name="notes" rows="3" placeholder="Ex.: Chego 10 min antes"></textarea>
+
+            <input type="hidden" name="_subject" value="Novo agendamento - Barbearia Exemplo" />
+            <button type="submit" class="btn" style="width:100%;margin-top:10px">Enviar pedido</button>
+          </form>
+
+          <div id="success" class="booking-success">Pedido recebido! Entraremos em contato pelo WhatsApp para confirmar.</div>
+
+          <p class="muted" style="margin-top:12px">Também aceitamos reservas por WhatsApp: <a href="https://wa.me/5591999999999" style="color:var(--accent)">Clique aqui</a></p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Informações</h4>
+          <p class="muted">Endereço: Rua Exemplo, 123 — Centro</p>
+          <p class="muted">Horário: Ter-Sáb 09:00 — 20:00</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">© <strong>Barbearia Exemplo</strong> — Feito por você. Cadastre-se no Google Meu Negócio para aparecer no mapa.</div>
+  </footer>
+
+  <script>
+    // Feedback simples ao enviar o formulário (client-side). Para produção use integração real (Formspree, Zapier, Calendly etc.)
+    const form = document.getElementById('bookingForm');
+    const successBox = document.getElementById('success');
+    form.addEventListener('submit', (e)=>{
+      // Mostra mensagem amigável e deixa forma seguir (para Formspree evitar double handling, pode também fazer fetch())
+      successBox.style.display='block';
+    });
+  </script>
+</body>
+</html>
